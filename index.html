@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Introducing the Drupal 8 Configuration System</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+   <style>
+     strong { color: #628179; }
+   </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h1>Introducing the <strong>Drupal 8</strong><br />Configuration System</h1>
+          <h3> &nbsp; </h3>
+          <p><strong>DrupalCon Austin</strong> &nbsp; &nbsp; June 3, 2014 &nbsp; &nbsp; <a href="http://matthewtift.com">matthewtift.com</a></p>
+        </section>
+
+        <section data-background="images/tift-canyon.jpg">
+          <div style="background-color: white; color:black; padding: 1em; opacity: 0.9; padding: 50px">
+            <h2 style="color:black">Matthew Tift</h2>
+            <h4 style="color:black"><code>mtift</code></h4>
+            <div style="postion: relative; padding: 20px;">
+              <img align="right" width="15%" alt="logo" src="images/lullabot-logo.png" />
+            </div>
+            <div style="postion: relative; padding: 20px;">
+              <h4 align="left" style="color:black">Senior Developer at Lullabot</h4>
+              <h4 align="left" style="color:black">Drupal 8 configuration system co-maintainter</h4>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h1><strong>Configuration Management</strong></h1>
+          <h2 class="fragment">... for site builders</h2>
+        </section>
+
+        <section>
+          <img src="images/confusion-graph.gif"/>
+          <h2>Expected Confusion Level</h2>
+        </section>
+
+
+        <!-- WHAT IS CONFIGURATION -->
+        <section data-background="#628179">
+          <h1 style="color: black">Configuration Management:</h1>
+          <h1>What is it?</h1>
+        </section>
+
+        <section>
+          <h2><strong>Configuration Management</strong></h2><br />
+          <div style="position: relative; float: left">
+            <h3 align="left">Quality</h3>
+            <h3 align="left">Identify Problems</h3>
+            <h3 align="left">Coordination</h3>
+            <h3 align="left">Code Management</h3>
+            <h3 align="left">Metadata</h3>
+          </div>
+          <div style="position: relative; float: right">
+            <h3 align="right">Consistency</h3>
+            <h3 align="right">Repeatability</h3>
+            <h3 align="right">Control</h3>
+            <h3 align="right">Verification</h3>
+            <h3 align="right">Documentation</h3>
+          </div>
+        </section>
+
+        <section>
+          <h1>DEV &#10142; PROD</h1>
+        </section>
+
+        <section>
+          <img src="images/configuration-activity-model.png" alt="configuration management"/><br />
+          <small>Configuration Management</small>
+        </section>
+
+        <section>
+          <h1><strong>Process</strong><br/>for establishing and maintaining consistency</h1>
+        </section>
+
+
+        <!-- WHAT IS CONFIGURATION IN DRUPAL -->
+        <section data-background="#628179">
+          <h1 style="color: black">Configuration</h1>
+          <h1>in Drupal 8</h1>
+        </section>
+
+        <section>
+          <h1>"Config" in Core</h1>
+          <br />
+
+          <h2 align="left"><strong>Drupal 7</strong></h2>
+          <h3 align="left" class="fragment"><code>"Configuration": 785</code></h3>
+          <h3 align="left" class="fragment"><code>"Config": 2,414</code></h3>
+
+          <h2 align="right" class="fragment"><strong>Drupal 8</strong></h2>
+          <h3 align="right" class="fragment"><code>"Configuration": 5,540</code></h3>
+          <h3 align="right" class="fragment"><code>"Config": 18,211</code></h3>
+        </section>
+
+        <section>
+          <img src="images/dog-computer.jpg" />
+        </section>
+
+        <section>
+          <h2>preconfigured</h2>
+          <h2>configurable</h2>
+          <h2>configurator</h2>
+          <h2>configured</h2>
+          <h2>configure</h2>
+        </section>
+
+        <section>
+          <h1>Configuration:</h1>
+          <h1><strong>Types of Things</strong></h1>
+        </section>
+
+        <section>
+          <h1><strong>Configuration:</strong></h1>
+          <h2>Views</h2>
+          <h2>Content Types</h2>
+          <h2>Image Styles</h2>
+          <h2>Forms</h2>
+          <h2>Settings</h2>
+          <h2>User Roles</h2>
+        </section>
+
+        <section>
+          <h1>Content:</h1>
+          <h1><strong>Things</strong></h1>
+        </section>
+
+        <section>
+          <h1><strong>Content:</strong></h1>
+          <h2>Article</h2>
+          <h2>Basic Page</h2>
+          <h2>Menu</h2>
+          <h2>User</h2>
+          <h2>Taxonomy</h2>
+        </section>
+
+        <section>
+          <h1>Site Builder</h1>
+          <h1><strong>vs</strong></h1>
+          <h1>Site Editor</h1>
+        </section>
+
+        <section>
+          <h1>That was<br /><strong>too</strong> easy</h1>
+        </section>
+
+        <section>
+          <h1>Simple<br />Configuration</h1>
+          <h1><strong>vs</strong></h1>
+          <h1>Configuration Entities</h1>
+        </section>
+
+        <section>
+          <h1>Simple<br />Configuration:</h1>
+          <h1><strong>Exactly one copy or version</strong></h1>
+        </section>
+
+        <section>
+          <h1>Configuration Entity:</h1>
+          <h1><strong>Creates zero or more items</strong></h1>
+        </section>
+
+        <section>
+          <img src="images/ConfigContent.jpg" alt="config content"/><br />
+          <small>Credit: <a href="http://hojtsy.hu/blog/2013-sep-13/drupal-8-multilingual-tidbits-14-intro-content-and-configuration">Gábor Hojtsy</a></small>
+        </section>
+
+        <section>
+          <h2 align="left">Simple Configuration</h2>
+          <h2> &#8597; </h2>
+          <h2 align="right">Configuration Entity</h2>
+          <h2 align="right"> &#8597; &nbsp; &nbsp; </h2>
+          <h2 align="right">Content Entity</h2>
+        </section>
+
+        <section>
+          <img src="images/confusion-growing.gif"/>
+          <h2>Confusion Check</h2>
+        </section>
+
+
+        <!-- WHAT IS IT GOOD FOR -->
+        <section data-background="#628179">
+          <h1 style="color: black">Configuration:</h1>
+          <h1>Benefits</h1>
+        </section>
+
+        <section>
+          <h1><strong>Benefit:</strong></h1>
+          <h1>Eliminated 50 database tables</h1><br />
+        </section>
+
+        <section>
+          <h1><strong>Benefit:</strong></h1>
+          <h1>Reduced need for Features and Strongarm</h1>
+        </section>
+
+        <section>
+          <h1><strong>Benefit:</strong></h1>
+          <h1>Translatable</h1>
+          <img src="images/translatable-config.png"/>
+        </section>
+
+        <section>
+          <h1>Three Items</h1>
+          <img src="images/english-site.png"/>
+        </section>
+
+        <section>
+          <h1>Two Translatable</h1>
+          <img src="images/german-site.png"/>
+        </section>
+
+        <section>
+          <img src="images/ooh.jpg"/>
+        </section>
+
+        <section>
+          <h1><strong>Benefit:</strong></h1>
+          <h1>Swappable</h1>
+        </section>
+
+        <section>
+          <h1><strong>Benefit:</strong></h1>
+          <h1>API for Developers</h1>
+        </section>
+
+        <section>
+          <h1><strong>Migrate in Core</strong></h1>
+          <h1>Includes Configuration</h1>
+        </section>
+
+        <section>
+          <h1>Is it useful?</h1>
+          <h1><strong>Is it valuable?</strong></h1>
+        </section>
+
+        <section>
+          <h4>Idea</h4>
+          <h4>&#8595;</h4>
+          <h4>Mockup</h4>
+          <h4>&#8595;</h4>
+          <h4>Prototype</h4>
+          <h4>&#8595;</h4>
+          <h4><strong>MVP</strong></h4>
+          <h4>&#8595;</h4>
+          <h4>Product</h4>
+          <h4>&#8595;</h4>
+          <h4>Useful</h4>
+          <h4>&#8595;</h4>
+          <h4>Valueable</h4>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section data-background="#628179">
+          <h1 style="color: black">How Does<br />This Work?</h1>
+        </section>
+
+        <section>
+          <h1>Configuration Life Cycle</h1>
+          <h2>&nbsp;</h2>
+          <h2><strong>files</strong> &#10142; <strong>database</strong> &#10142; <strong>files</strong></h2>
+          <h4><strong>(default)</strong></h4>
+        </section>
+
+        <section>
+          <h1>JPEG Quality</h1>
+          <img alt="file" src="images/jpg-quality-ui.png" />
+          <small>admin/config/media/image-toolkit</small>
+        </section>
+
+        <section>
+          <img alt="file" src="images/higher-jpeg-quality.png" />
+        </section>
+
+        <section>
+          <h1>File</h1>
+          <img alt="file" src="images/jpg-quality-file.png" />
+          <small>core/modules/system/config/install/system.image.gd.yml</small>
+        </section>
+
+        <section>
+          <h1>Database</h1>
+          <img alt="file" src="images/jpg-quality-db.png" />
+        </section>
+
+        <section>
+          <h1>File</h1>
+          <img alt="file" src="images/jpg-quality-file.png" />
+          <small>system.image.gd.yml</small>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section data-background="#628179">
+          <h2 style="color: black">Yeah, about those files...</h2>
+        </section>
+
+        <section>
+          <h2><strong>Why the Database?</strong></h2>
+          <h1>More secure</h1>
+        </section>
+
+        <section>
+          <h2><strong>Why the Database?</strong></h2>
+          <h1>Faster</h1>
+        </section>
+
+        <section>
+          <h2><strong>Why the Database?</strong></h2>
+          <h1>Can't hack<br />active config</h1>
+        </section>
+
+        <section>
+          <h2><strong>Why the Database?</strong></h2>
+          <h1>Fewer config files</h1>
+        </section>
+
+        <section>
+          <h2><strong>Why the Database?</strong></h2>
+          <h1>Database contains "everything"</h1>
+        </section>
+
+        <section>
+          <h1>Love Files?</h1>
+          <img alt="I love files" src="images/i-love-files.jpg" />
+        </section>
+
+        <section>
+          <h1><a href="https://drupal.org/project/config_devel">Configuration Development Module</a></h1><br />
+          <h2><strong>files</strong> &#10142; <strong>"files"</strong> &#10142; <strong>files</strong></h2>
+        </section>
+
+        <section>
+          <img src="images/who-cares.jpg" />
+        </section>
+
+        <section>
+          <h1>Drupal 7 Configuration</h1>
+          <h2>&nbsp;</h2>
+          <h2><strong>files</strong> &#10142; <strong>database</strong>  &#10142; <strong>?</strong></h2>
+        </section>
+
+        <section>
+          <img src="images/minimum-jpeg-quality.png" />
+        </section>
+
+        <section>
+          <h1>File</h1>
+          <img alt="file" src="images/d7-jpg-quality-code.png" />
+          <small>system/image.gd.inc (Drupal 7)</small>
+        </section>
+
+        <section>
+          <h1>Recall D8</h1>
+          <img alt="file" src="images/jpg-quality-file.png" />
+        </section>
+
+        <section>
+          <h1>Database</h1>
+          <img alt="file" src="images/d7-jpg-quality-db.png" />
+        </section>
+
+        <section>
+          <h1>User Interface</h1>
+          <img alt="file" src="images/d7-jpg-quality-ui.png" />
+          <small>admin/config/media/image-toolkit</small>
+        </section>
+
+        <section>
+          <h1><code>Now What?</code></h1>
+          <hr>
+          <h2>Consistent?</h2>
+          <h2>Repeatable?</h2>
+          <h2>Quality?</h2>
+          <h2>Identify Problems?</h2>
+          <h2>Coordinated?</h2>
+          <h2>Metadata?</h2>
+        </section>
+
+        <section>
+          <h1>Configuration Life Cycle</h1>
+          <h2>&nbsp;</h2>
+          <h2><strong>files</strong> &#10142; <strong>database</strong> &#10142; <strong>files</strong></h2>
+          <h4><strong>(default)</strong></h4>
+        </section>
+
+
+        <!-- OTHER CONFIGURATION -->
+        <section data-background="#628179">
+          <h1 style="color: black">Other<br />Drupal 8 Data</h1>
+        </section>
+
+        <section>
+          <h1><strong>Cron last run</strong></h1>
+          <h1>Config? Content?</h1>
+        </section>
+
+        <section>
+          <h1><strong>Other D8 Data</strong></h1>
+          <h2>State System</h2>
+          <img alt="state system" src="images/state-system.png" />
+        </section>
+
+        <section>
+          <h1><strong>Other D8 Data</strong></h1>
+          <h2>Session Management</h2>
+          <img alt="state system" src="images/session-management.png" />
+        </section>
+
+        <section>
+          <h1><strong>Other D8 Data</strong></h1>
+          <h2>Settings.php<br /><code>$config</code> variable</h2>
+          <img alt="config variable" src="images/config-variable.png" />
+        </section>
+
+        <section>
+          <img src="images/stop-jpeg-quality-madness.png" />
+        </section>
+
+        <section>
+          <h1><strong>Other D8 Data</strong></h1>
+          <h2>Settings.php<br />other variables</h2>
+          <img alt="settings variable" src="images/settings-variable.png" />
+        </section>
+
+        <section>
+          <img src="images/confusion-highest.gif"/>
+          <h2>Confusion Check</h2>
+        </section>
+
+        <section>
+          <img src="images/pancake_bunny.jpg"/>
+        </section>
+
+
+        <!-- HOW DO I USE IT -->
+        <section data-background="#628179">
+          <h1 style="color: black">Configuration:</h1>
+          <h1>How do I use it?</h1>
+        </section>
+
+        <section>
+          <h1>Configuration Manager Module</h1>
+          <img alt="configuration manager module" src="images/configuration-manager.png" />
+        </section>
+
+        <section>
+          <h2>Configuration Management Section</h2>
+          <img alt="config management" src="images/config-management-section.png" />
+        </section>
+
+        <section>
+          <h1>Synchronize Changes</h1>
+          <img alt="synchronize changes" src="images/synchronize-changes.png" />
+        </section>
+
+        <section>
+          <h1>View Differences</h1>
+          <img alt="yml files" src="images/view-differences.png" />
+        </section>
+
+        <section>
+          <h1>Clone Your Site</h1>
+          <h2><strong>You can only synchronize configuration between cloned instances of a site</strong></h2>
+        </section>
+
+        <section data-background="#628179">
+          <h1 style="color: black">Live Demo</h1>
+        </section>
+
+        <section>
+          <h2>Configuration Management:</h2>
+          <h2>How You Can Help</h2>
+          <h3><a href="https://drupal8cmi.org">drupal8cmi.org</a></h3>
+          <h3>IRC: #drupal-cmi</h3>
+        </section>
+
+        <section>
+          <h1>What did<br />you think?</h1><br />
+          <h2><strong>Evaluate this session</strong></h2>
+          <h3><a href="https://austin2014.drupal.org/schedule">austin2014.drupal.org/schedule</a></h3>
+        </section>
+
+        <section>
+          <h1>Matthew Tift</h1>
+          <h3>Drupal.org: <a style="text-decoration: none;" href="http://drupal.org/user/751908">mtift</a></h3>
+          <h3>Web: <a style="text-decoration: none;" href="http://matthewtift.com">matthewtift.com</a></h3>
+          <h3>Twitter: <a style="text-decoration: none;" href="https://twitter.com/matthewtift">@matthewtift</a></h3>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: false,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
